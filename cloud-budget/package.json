@@ -1,7 +1,6 @@
 {
-  "name": "webpack-config-site",
+  "name": "cloud-budger",
   "version": "1.0.0",
-  "description": "Базовая настройка webpack для вёрстки статичных сайтов.",
   "main": "index.js",
   "scripts": {
     "build": "webpack -d",
@@ -11,7 +10,7 @@
   },
   "author": "Max Voronin",
   "license": "ISC",
-  "homepage": "https://github.com/Limas94/webpack-config-site",
+  "homepage": "https://github.com/Limas94/Sites/tree/master/cloud-budget",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
