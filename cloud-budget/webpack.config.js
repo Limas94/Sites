@@ -17,7 +17,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	// Точка входа
-	entry: './src/index.js',
+	entry: './src/global/index.js',
 
 	// Точка выхода
 	output: {
@@ -43,7 +43,7 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					// Лоадеры, соответствующие выбранному стилю
-					{ loader: 'style-loader' },
+					// { loader: 'style-loader' },
 					{ loader: 'css-loader' },
 					{
 						// Важно, чтобы перед sass loaderom был
@@ -54,12 +54,6 @@ module.exports = {
 					},
 					{ loader: 'sass-loader' }
 				],
-			},
-
-			{
-				test: /\.js$/,
-				exclude: /node-modules/,
-				use: ['babel-loader']
 			},
 
 			{
@@ -118,8 +112,7 @@ module.exports = {
 	plugins: [
 		// Создание экземпляра класса
 		new HtmlWebpackPlugin({
-			title: 'Name Site',
-			template: './src/index.handlebars'
+			template: './src/pages/index.handlebars'
 		}),
 
 		new MiniCssExtractPlugin({
