@@ -1,6 +1,7 @@
 {
-  "name": "cloud-budger",
+  "name": "cloud-budget",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack -d",
@@ -10,14 +11,13 @@
   },
   "author": "Max Voronin",
   "license": "ISC",
-  "homepage": "https://github.com/Limas94/Sites/tree/master/cloud-budget",
+  "homepage": "https://github.com/Limas94/webpack-config-site",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "autoprefixer": "^9.7.5",
+    "autoprefixer": "^9.7.6",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "file-loader": "^6.0.0",
     "handlebars": "^4.7.6",
@@ -31,5 +31,8 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
   }
 }

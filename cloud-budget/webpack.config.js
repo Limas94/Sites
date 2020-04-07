@@ -3,7 +3,7 @@ const path = require("path");
 // Плагин для работы с HTML
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Плагин для работы с CSS
+// Плагин для минификации css
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Плагин для чистки от неиспользуемых файлов
@@ -11,9 +11,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // Плагин для префиксов
 const autoprefixer = require('autoprefixer');
-
-// Плагин для копирования всякого
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	// Точка входа
@@ -36,33 +33,40 @@ module.exports = {
 	module: {
 		//Правила
 		rules: [
-			{ test: /\.handlebars$/, loader: 'handlebars-loader'  },
+			// Шаблонизатор handlebars
 			{
-				// Проверка файла на стили
-				test: /\.(scss|css)$/,
+				test: /\.handlebars$/,
+				loader: 'handlebars-loader'
+			},
+
+			{
+				// Проверка на расширение файла
+				test: /\.(sass|scss|css)$/,
 				use: [
 					MiniCssExtractPlugin.loader,
-					// Лоадеры, соответствующие выбранному стилю
-					// { loader: 'style-loader' },
-					{ loader: 'css-loader' },
+					"css-loader",
 					{
-						// Важно, чтобы перед sass loaderom был
 						loader: 'postcss-loader',
 						options: {
-							plugins: () => [autoprefixer()]
+							plugins: () => [
+								autoprefixer({
+									browsers:['last 4 version']
+								})
+							]
 						},
 					},
-					{ loader: 'sass-loader' }
+					"sass-loader"
 				],
 			},
 
 			{
-				// Проверка файла на img расширения
-				test: /\.(jpe?g|gif|png|svg)$/i,
+				// Загрузка изоражений
+				test: /\.(jpe?g|gif|png|svg)$/,
 				use: [
-					'file-loader',
+					{ loader: 'file-loader' },
+
 					{
-						loader: 'image-webpack-loader',
+						loader: 'file-loader',
 						options: {
 							// Сжатие изображений JPEG
 							mozjpeg: {
@@ -90,27 +94,33 @@ module.exports = {
 							webp: {
 								quality: 75
 							}
-						},
-					},
-				],
+						}
+					}
+				]
 			},
 
 			{
 				// Загрузка шрифтов
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
 				use: [
-					'file-loader'
+					"file-loader"
 				]
 			},
+
+			{
+				test: /\.m?js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env']
+					}
+				}
+			}
 		],
 	},
 
-	resolve: {
-		extensions: ['*', '.js']
-	},
-
 	plugins: [
-		// Создание экземпляра класса
 		new HtmlWebpackPlugin({
 			template: './src/pages/index.handlebars'
 		}),
@@ -121,15 +131,6 @@ module.exports = {
 
 		new CleanWebpackPlugin({
 			path: './dist/*.*'
-		}),
-
-		// new CopyWebpackPlugin([
-		// 	{
-		// 		// Выбираем что копировать и откуда
-		// 		from: 'src/*.txt',
-		// 		// Куда копировать
-		// 		to: 'dist/'
-		// 	},
-		// ])
+		})
 	]
 };
