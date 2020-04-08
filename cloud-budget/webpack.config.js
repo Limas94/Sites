@@ -12,9 +12,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // Плагин для префиксов
 const autoprefixer = require('autoprefixer');
 
+const CopyWebpackPlugin= require('copy-webpack-plugin');
+
 module.exports = {
 	// Точка входа
-	entry: './src/global/index.js',
+	entry: {
+		"index.js": './src/global/'
+	},
 
 	// Точка выхода
 	output: {
@@ -27,6 +31,7 @@ module.exports = {
 	// Сервак, отслеживающий изменения в выбранном каталоге
 	devServer: {
 		contentBase: './dist'
+		// contentBase: [path.resolve(__dirname, "/dist"), path.resolve(__dirname, "assets")],
 	},
 
 	// Модули
@@ -43,7 +48,7 @@ module.exports = {
 				// Проверка на расширение файла
 				test: /\.(sass|scss|css)$/,
 				use: [
-					MiniCssExtractPlugin.loader,
+					"style-loader",
 					"css-loader",
 					{
 						loader: 'postcss-loader',
@@ -102,9 +107,12 @@ module.exports = {
 			{
 				// Загрузка шрифтов
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				use: [
-					"file-loader"
-				]
+				exclude: /node-models/,
+				loader: 'file-loader',
+				options: {
+					publicPath: './fonts',
+					name: '../fonts/[name].[ext]'
+				}
 			},
 
 			{
@@ -131,6 +139,13 @@ module.exports = {
 
 		new CleanWebpackPlugin({
 			path: './dist/*.*'
-		})
+		}),
+
+		new CopyWebpackPlugin([
+			{
+				from: './src/assets/fonts',
+				to: './fonts'
+			}
+		]),
 	]
 };

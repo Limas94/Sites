@@ -1,1 +1,11 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    font-family: $body-font;
+    font-size: $base-font-size;
+    color: $font-color;
+}
+
+.container {
+    max-width: $desktop;
+}
