@@ -1,10 +1,10 @@
-const path = require("path");
+const path = require('path');
 
 // Плагин для работы с HTML
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Плагин для минификации css
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// Плагин для минификации css, пока не использую
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Плагин для чистки от неиспользуемых файлов
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -12,26 +12,26 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // Плагин для префиксов
 const autoprefixer = require('autoprefixer');
 
-const CopyWebpackPlugin= require('copy-webpack-plugin');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
 	// Точка входа
-	entry: {
-		"index.js": './src/global/'
-	},
+	entry: './src/global/index.js',
 
 	// Точка выхода
 	output: {
 		// Смена имени по-умолчанию
 		filename: '[name].bundle.js',
 		// Куда сохранять
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
 	},
+
+	devtool: isDevelopment && "source-map",
 
 	// Сервак, отслеживающий изменения в выбранном каталоге
 	devServer: {
-		contentBase: './dist'
-		// contentBase: [path.resolve(__dirname, "/dist"), path.resolve(__dirname, "assets")],
+		contentBase: "/dist"
 	},
 
 	// Модули
@@ -39,17 +39,18 @@ module.exports = {
 		//Правила
 		rules: [
 			// Шаблонизатор handlebars
-			{
-				test: /\.handlebars$/,
-				loader: 'handlebars-loader'
-			},
+			{test: /\.handlebars$/, loader: 'handlebars-loader'},
 
 			{
-				// Проверка на расширение файла
 				test: /\.(sass|scss|css)$/,
 				use: [
-					"style-loader",
-					"css-loader",
+					'style-loader',
+					{
+						loader: "css-loader",
+						options: {
+							sourceMap: isDevelopment,
+						}
+					},
 					{
 						loader: 'postcss-loader',
 						options: {
@@ -57,66 +58,30 @@ module.exports = {
 								autoprefixer({
 									browsers:['last 4 version']
 								})
-							]
+							],
+							sourceMap: true
 						},
 					},
 					"sass-loader"
-				],
+				]
 			},
 
 			{
-				// Загрузка изоражений
-				test: /\.(jpe?g|gif|png|svg)$/,
+				// Загрузка изоражений и шрифтов
+				test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
 				use: [
-					{ loader: 'file-loader' },
-
 					{
-						loader: 'file-loader',
+						loader: "file-loader",
 						options: {
-							// Сжатие изображений JPEG
-							mozjpeg: {
-								progressive: true,
-								quality: 65
-							},
-
-							// Сжатие изображений PNG
-							optipng: {
-								enabled: false,
-							},
-
-							// Сжатие изображений PNG
-							pngquant: {
-								quality: [0.65, 0.90],
-								speed: 4
-							},
-
-							// Сжатие изображений GIF
-							gifsicle: {
-								interlaced: false,
-							},
-
-							// Сжатие изображений JPG / PNG / WEBP
-							webp: {
-								quality: 75
-							}
+							name: '[contenthash].[ext]',
+							outputPath: 'assets/'
 						}
 					}
 				]
 			},
 
 			{
-				// Загрузка шрифтов
-				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				exclude: /node-models/,
-				loader: 'file-loader',
-				options: {
-					publicPath: './fonts',
-					name: '../fonts/[name].[ext]'
-				}
-			},
-
-			{
-				test: /\.m?js$/,
+				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
 				use: {
 					loader: 'babel-loader',
@@ -124,7 +89,7 @@ module.exports = {
 						presets: ['@babel/preset-env']
 					}
 				}
-			}
+			},
 		],
 	},
 
@@ -133,19 +98,6 @@ module.exports = {
 			template: './src/pages/index.handlebars'
 		}),
 
-		new MiniCssExtractPlugin({
-			filename: "[name].css"
-		}),
-
-		new CleanWebpackPlugin({
-			path: './dist/*.*'
-		}),
-
-		new CopyWebpackPlugin([
-			{
-				from: './src/assets/fonts',
-				to: './fonts'
-			}
-		]),
+		new CleanWebpackPlugin(),
 	]
 };

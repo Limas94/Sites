@@ -6,6 +6,11 @@ html {
     color: $font-color;
 }
 
+body {
+    font-family: "Lato", sans-serif;
+    transition: 1s;
+}
+
 .container {
     max-width: $desktop;
 }

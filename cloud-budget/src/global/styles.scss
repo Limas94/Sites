@@ -1,6 +1,4 @@
-@import "scss/_fonts";
-@import "scss/_variables";
-@import "scss/_main";
-@import "../components/footer/_footer";
-@import "../components/header/_header";
-@import "../components/menu/_menu";
+@import "~normalize.css";
+
+@import "scss/fonts";
+@import "scss/main";
