@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prod": "NODE_ENV=production webpack --config ./webpack.config.js --mode=production",
     "build": "webpack -d",
-    "start": "webpack-dev-server --open"
+    "prod": "webpack -p",
+    "start": "webpack-dev-server --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Max Voronin",
+  "author": "",
   "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
@@ -21,7 +25,6 @@
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^4.0.4",
-    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
@@ -29,8 +32,5 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
-  },
-  "dependencies": {
-    "normalize.css": "^8.0.1"
   }
 }

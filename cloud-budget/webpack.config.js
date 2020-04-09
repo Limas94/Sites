@@ -3,17 +3,11 @@ const path = require('path');
 // Плагин для работы с HTML
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Плагин для минификации css, пока не использую
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 // Плагин для чистки от неиспользуемых файлов
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // Плагин для префиксов
 const autoprefixer = require('autoprefixer');
-
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
 	// Точка входа
@@ -27,11 +21,11 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 	},
 
-	devtool: isDevelopment && "source-map",
-
 	// Сервак, отслеживающий изменения в выбранном каталоге
 	devServer: {
-		contentBase: "/dist"
+		contentBase: path.join(__dirname, './dist'),
+		compress: true,
+		port: 9000
 	},
 
 	// Модули
@@ -45,21 +39,15 @@ module.exports = {
 				test: /\.(sass|scss|css)$/,
 				use: [
 					'style-loader',
-					{
-						loader: "css-loader",
-						options: {
-							sourceMap: isDevelopment,
-						}
-					},
+					"css-loader",
 					{
 						loader: 'postcss-loader',
 						options: {
 							plugins: () => [
 								autoprefixer({
-									browsers:['last 4 version']
+									overrideBrowserslist:  ['last 4 versions'],
 								})
 							],
-							sourceMap: true
 						},
 					},
 					"sass-loader"
@@ -74,7 +62,8 @@ module.exports = {
 						loader: "file-loader",
 						options: {
 							name: '[contenthash].[ext]',
-							outputPath: 'assets/'
+							outputPath: 'assets/',
+							// useRelativePath: true
 						}
 					}
 				]
@@ -82,7 +71,7 @@ module.exports = {
 
 			{
 				test: /\.js$/,
-				exclude: /(node_modules|bower_components)/,
+				exclude: /(node_modules)/,
 				use: {
 					loader: 'babel-loader',
 					options: {
