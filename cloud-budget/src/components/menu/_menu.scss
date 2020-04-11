@@ -1,0 +1,163 @@
+.wrap__menu {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 50px;
+
+    /* Logo */
+    img {
+        width: 172px;
+        height: 29px;
+
+        z-index: 2;
+        margin-right: 10px;
+    }
+
+    /* Кнопка входа */
+    .btn-login {
+        margin-left: 10px;
+
+        width: 100px;
+        height: 40px;
+
+        border: 1px solid #FFFFFF;
+        border-radius: 6px;
+
+        background-color: transparent;
+
+        color: $color-white;
+
+        /* Для нахождения кнопки поверх "выезжающего меню" */
+        z-index: 2;
+
+        &:hover {
+            border: 2px solid #FFFFFF;
+        }
+
+        &:focus {
+            font-weight: bold;
+            border: 2px solid #FFFFFF;
+        }
+
+        @media screen and (max-width: 380px){
+            width: 100%;
+            align-self: center;
+            margin: 0;
+        }
+    }
+
+    /* Навигация */
+    nav {
+        a:visited, a:link { font-size: 2rem; }
+        a:hover { font-weight: bold; }
+
+        /* Вырубаем чекбоксы, дабы он не учиывался в размерах */
+        .mobile-menu__checkbox { display: none; }
+
+        /* Кнопка */
+        .mobile-menu__btn {
+            display: flex;
+            position: relative;
+            align-items: center;
+
+            width: 40px;
+            height: 40px;
+
+            z-index: 2;
+
+            @media screen and (min-width: 800px) {
+                display: none;
+            }
+
+            /* Бургер */
+            .mobile-menu__burg {
+                position: relative;
+                display: block;
+
+                width: 100%;
+                height: 3px;
+
+                background-color: white;
+
+                @media screen and (min-width: 800px){
+                    display: none;
+                    .mobile-menu__btn {
+                        display: none;
+                    }
+                }
+            }
+
+            .mobile-menu__burg:after, .mobile-menu__burg:before {
+                content: "";
+
+                position: absolute;
+
+                width: 100%;
+                height: 3px;
+
+                background-color: white;
+            }
+
+            .mobile-menu__burg:after { top: 8px; }
+            .mobile-menu__burg:before { top: -8px; }
+        }
+
+        /* Менюшка */
+        .menu {
+            position: fixed;
+            z-index: 1;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            text-align: center;
+
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+
+            opacity: 0;
+            pointer-events: none;
+
+            background: linear-gradient(90deg, rgba(213, 32, 71, 0.9) 0%, rgba(238, 61, 27, 0.9) 100%);
+
+            li:not(:last-child) { margin-bottom: 1.5rem; }
+
+            transition: 0.5s;
+
+            @media screen and (min-width: 800px) {
+                position: relative;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                opacity: 1;
+                pointer-events: auto;
+                transition: 0s;
+                top: 0;
+                height: auto;
+                list-style: none;
+                background: none;
+
+                a {
+                    font-size: 0.875rem;
+                    line-height: 17px;
+                }
+
+                li:not(:last-child) {
+                    margin: 0;
+                    margin-right: 2vw;
+                }
+            }
+        }
+
+        .menu a {
+            color: $color-white;
+            text-decoration: none;
+        }
+    }
+}

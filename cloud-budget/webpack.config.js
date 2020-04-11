@@ -9,6 +9,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // Плагин для префиксов
 const autoprefixer = require('autoprefixer');
 
+// Копирование
+const CopyPlugin = require('copy-webpack-plugin');
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
 	// Точка входа
 	entry: './src/global/index.js',
@@ -38,7 +43,8 @@ module.exports = {
 			{
 				test: /\.(sass|scss|css)$/,
 				use: [
-					'style-loader',
+					// 'style-loader',
+					MiniCssExtractPlugin.loader,
 					"css-loader",
 					{
 						loader: 'postcss-loader',
@@ -63,7 +69,6 @@ module.exports = {
 						options: {
 							name: '[contenthash].[ext]',
 							outputPath: 'assets/',
-							// useRelativePath: true
 						}
 					}
 				]
@@ -85,6 +90,14 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/pages/index.handlebars'
+		}),
+
+		new CopyPlugin([
+			{ from: './src/assets/images/', to: './assets/' },
+		]),
+
+		new MiniCssExtractPlugin({
+			filename: "[contenthash].css",
 		}),
 
 		new CleanWebpackPlugin(),
