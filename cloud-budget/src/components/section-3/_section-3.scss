@@ -28,29 +28,73 @@
         flex-wrap: wrap;
 
         &__block {
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-
+            
             width: 255px;
             height: 226px;
 
             text-align: center;
 
             .section-3__img {
-                width: 47px;
-                height: 53px;
+                position: absolute;
+                top: 60px;
+
+                width: 80px;
+                height: 80px;
+
+                background-size: cover;
+                background-repeat: no-repeat;
+
+                &--1 { background-image: url("../../assets/images/technology-1.svg") }
+                &--2 { background-image: url("../../assets/images/technology-2.svg") }
+                &--3 { background-image: url("../../assets/images/technology-3.svg") }
+                &--4 { background-image: url("../../assets/images/technology-3.svg") }
+            }
+
+            p.numBig {
+                font-weight: bold;
+                font-size: 6.25rem;
+                line-height: 7.5rem;
+
+                color: rgba(16, 16, 16, 0.08);
             }
 
             h2 {
-                margin-top: 15px;
+                margin-top: 26px;
                 font-size: 1.125rem;
             }
 
-            p {
+            p.text {
                 margin-top: 15px;
                 font-size: 0.75rem;
+            }
+
+            &:nth-child(2) {
+                margin-left: 2vw;
+                margin-right: 2vw;
+            }
+
+            &:nth-child(3) {
+                margin-right: 2vw;
+            }
+
+            @media screen and (max-width: 1095px) {
+                &:nth-child(4) { margin: 0 auto }
+                &:nth-child(3) { margin: 0 }
+            }
+
+            @media screen and (max-width: 824px) {
+                &:nth-child(4), &:nth-child(3) { margin: 0 }
+                &:nth-child(2) { margin-right: 0 }
+                &:nth-child(1) { margin-right: 2vw }
+            }
+
+            @media screen and (max-width: 562px) {
+                width: 100%;
             }
         }
     }
