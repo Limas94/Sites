@@ -7,6 +7,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 
     color: $color-white;
 
@@ -16,7 +17,6 @@
     &__left {
         display: flex;
         flex-direction: column;
-        justify-content: center;
 
         max-width: 445px;
 
@@ -48,14 +48,25 @@
 
             img:not(:last-child) { margin-right: 25px }
         }
+
+        @media screen and (max-width: 1040px) {
+            text-align: center;
+
+            margin: 0 auto;
+            max-width: 600px;
+
+            .os {
+                justify-content: center;
+            }
+        }
     }
 
     &__right {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
 
+        width: 100%;
         max-width: 533px;
 
         .slider {
@@ -66,23 +77,130 @@
             position: relative;
 
             &__slide {
-                position: relative;
+                position: absolute;
 
-                width: 383px;
-                height: 267px;
+                img {
+                    width: 383px;
+                    height: 267px;
+                }
 
                 z-index: 1;
                 opacity: 0.5;
 
-                &:nth-child(2) { left: 120px; }
-                &:nth-child(3) { right: 120px; }
+                &:nth-child(2) { left: -120px; }
+                &:nth-child(3) { right: -120px; }
 
                 &--active {
                     position: absolute;
-                    width: 445px;
-                    height: auto;
                     z-index: 3;
                     opacity: 1;
+                    height: 311px;
+
+                    img {
+                        width: 445px;
+                        height: 311px;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 1040px) {
+            margin-top: 100px;
+            max-width: 100%;
+
+            .slider {
+                margin-bottom: 22px;
+                margin-top: 22px;
+
+                &__slide {
+                    position: relative;
+
+                    &:nth-child(2) { left: 120px }
+                    &:nth-child(3) { right: 120px }
+
+                    &--active {
+                        position: absolute;
+                        z-index: 3;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 770px) {
+            max-width: 400px;
+            margin: 100px auto 0;
+
+            .slider {
+                max-width: 560px;
+            }
+        }
+
+        @media screen and (max-width: 580px) {
+            .slider {
+                max-width: 500px;
+
+                &__slide, &__slide img {
+                    width: 363px;
+                    height: auto;
+
+                    &--active, &--active img {
+                        width: 425px;
+                        height: auto;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 530px) {
+            .slider {
+                max-width: 300px;
+
+                &__slide {
+                    &:nth-child(2) { left: 100px }
+                    &:nth-child(3) { right: 100px }
+                }
+
+                &__slide, &__slide img {
+                    width: 300px;
+
+                    &--active, &--active img {
+                        width: 334px;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 430px) {
+            .slider {
+                &__slide {
+                    &:nth-child(2) { left: 80px }
+                    &:nth-child(3) { right: 80px }
+                }
+
+                &__slide, &__slide img {
+                    width: 260px;
+
+                    &--active, &--active img {
+                        width: 300px;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .slider {
+                &__slide {
+                    &:nth-child(2) { left: 100px }
+                    &:nth-child(3) { right: 100px }
+                }
+
+                &__slide, &__slide img {
+                    width: 250px;
+
+                    &--active, &--active img {
+                        width: 260px;
+                    }
                 }
             }
         }
