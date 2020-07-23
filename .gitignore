@@ -1,4 +1,4 @@
-/cloud-budget/node_modules
+/CloudBudget/node_modules
 /gifts/node_modules
 *.DS_Store
 *.xml
