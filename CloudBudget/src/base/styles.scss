@@ -1,9 +1,7 @@
 // node
 @import "reset-css";
 
-// base and vendors
-@import "../vendors/bootstrap-grid.min.css";
-
+// base
 @import "./scss/scaffolding";
 @import "./scss/fonts";
 @import "./scss/variables";
@@ -15,3 +13,4 @@
 // layout
 @import "../layout/menu/menu";
 @import "../layout/header/header";
+@import "../layout/section-1/section-1";
