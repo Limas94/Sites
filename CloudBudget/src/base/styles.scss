@@ -1,10 +1,17 @@
 // node
-@import "~normalize.css";
+@import "reset-css";
 
-// global
+// base and vendors
+@import "../vendors/bootstrap-grid.min.css";
+
 @import "./scss/scaffolding";
 @import "./scss/fonts";
 @import "./scss/variables";
 @import "./scss/main";
 
 // components
+@import "../components/buttons";
+
+// layout
+@import "../layout/menu/menu";
+@import "../layout/header/header";
