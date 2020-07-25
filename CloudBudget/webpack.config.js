@@ -93,7 +93,7 @@ module.exports = {
 		}),
 
 		new CopyPlugin([
-			{ from: './src/assets/img/', to: './assets/' },
+			{ from: './src/assets/images/', to: './assets/' },
 		]),
 
 		new MiniCssExtractPlugin({
