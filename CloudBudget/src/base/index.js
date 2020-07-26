@@ -1,2 +1,3 @@
 import "./styles.scss";
-import menu from "../layout/menu/menu";
+import "../layout/menu/menu";
+import "../layout/money/slider";
