@@ -46,7 +46,7 @@
                 border-radius: 6px;
             }
 
-            input[type="text"] { width: calc(50% - 17.1px); }
+            .contact-name { input { width: calc(50% - 17.1px) } }
 
             input:nth-child(1) { margin-right: 30px }
 
@@ -122,6 +122,15 @@
                     &:last-child {
                         margin-top: 24px;
                     }
+                }
+
+                .contact-name { 
+                    input { 
+                        width: 100%;
+                        margin: 0;
+
+                        &:last-child { margin-top: 24px }
+                    } 
                 }
 
                 input[type="submit"] {
