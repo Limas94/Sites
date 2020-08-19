@@ -377,7 +377,7 @@ main .post-content .post-title a {
 }
 
 .site-content .sidebar .newsletter {
-    padding-top: 3rem;
+    padding-top: 4rem;
 }
 
 .site-content .sidebar .newsletter .form-elements {
@@ -397,6 +397,17 @@ main .post-content .post-title a {
     padding: .8rem 32%;
     margin: 1rem 0;
     background: var(--sky);
+}
+
+.site-content .sidebar .popular-tags {
+    padding: 5rem 0;
+}
+
+.site-content .sidebar .popular-tags .tags .tag {
+    background: var(--sky);
+    padding: .4rem 1rem;
+    border-radius: 3rem;
+    margin: .4rem .6rem;
 }
 /* - / -- Sidebar -- \ - */
 
