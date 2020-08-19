@@ -43,6 +43,29 @@ ul {
     list-style-type: none;
 }
 
+h1 {
+    font-family: var(--Lexend);
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-family: var(--Lexend);
+}
+
+h3 {
+    font-family: var(--Abel);
+    font-size: 1.3rem;
+}
+
+button.btn {
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
+
 /* ----/------- Global Classes ------/---- */
 
 
@@ -72,7 +95,7 @@ ul {
 .nav .toggle-collapse .toggle-icons {
     display: flex;
     justify-content: flex-end;
-    padding: 1.7rem 0 ;
+    padding: 1.7rem 0;
 }
 
 .nav .toggle-collapse .toggle-icons i {
@@ -97,7 +120,7 @@ ul {
 }
 
 .nav .nav-items .nav-link:hover {
-    background-color: var(--midnight) ;
+    background-color: var(--midnight);
 }
 
 .nav .nav-items .nav-link:hover a {
@@ -126,6 +149,43 @@ ul {
 }
 
 /* --/--/--/-- navbar --/--/--/-- */
+
+
+/* ---------- Main Content ---------- */
+
+/* --- Site Title --- */
+main .site-title {
+    display: flex;
+    justify-content: center;
+
+    background: url('../assets/Background-image.png');
+    background-size: cover;
+    height: 110vh;
+}
+
+main .site-title .site-background {
+    padding-top: 10rem;
+    text-align: center;
+    color: var(--white);
+}
+
+main .site-title h1, h3 {
+    margin: .3rem;
+}
+
+main .site-title .btn {
+    margin: 1.8rem;
+    background: var(--sky);
+}
+
+main .site-title .btn:hover {
+    background: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+/* - / -- Site Title -- \ - */
+
+/* --- / --- / ---- Main Content ---- \ --- \ --- */
 
 
 /* Media */
