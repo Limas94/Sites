@@ -273,7 +273,6 @@ main .site-content {
 
 main .post-content {
     width: 100%;
-    margin-bottom: 5rem;
 }
 
 main .site-content .post-content > .post-image, .post-title {
@@ -375,6 +374,29 @@ main .post-content .post-title a {
 
 .site-content .sidebar .popular-post .post-title a {
     font-size: 1rem;
+}
+
+.site-content .sidebar .newsletter {
+    padding-top: 3rem;
+}
+
+.site-content .sidebar .newsletter .form-elements {
+    padding: .5rem 2rem;
+}
+
+.site-content .sidebar .newsletter .input-element {
+    width: 80%;
+    height: 1.9rem;
+    padding: .3rem .5rem;
+    font-family: var(--Lexend);
+    font-size: 1rem;
+}
+
+.site-content .sidebar .newsletter .form-btn {
+    border-radius: 0;
+    padding: .8rem 32%;
+    margin: 1rem 0;
+    background: var(--sky);
 }
 /* - / -- Sidebar -- \ - */
 
