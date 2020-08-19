@@ -1,3 +1,4 @@
+// Адаптивка карусели
 const responsive = {
     0: { items: 1 },
     320: { items: 1 },
@@ -17,7 +18,6 @@ $(document).ready(function() {
     // Карусель
     $('.owl-carousel').owlCarousel({
         loop: true,
-        // autoplay: true,
         autoplayTimeout: 3000,
         dots: false,
         nav: true, 
