@@ -1,9 +1,25 @@
-import React from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Cards, Chart, CountryPicker } from './components';
+import styles from './App.module.css';
+
+import { fetchData } from './api';
 
 function App() {
-	return (
-		<div className="App">
+	const [data, setData] = useState();
+
+	useEffect(() => {
+		async function dataFetch() {
+			setData(await fetchData());
+		};
+
+		dataFetch();
+	}, []);
+	
+	return ( 
+		<div className = {styles.container}>
+			<Cards/>
+			<Chart/>
+			<CountryPicker/>
 		</div>
 	);
 }
