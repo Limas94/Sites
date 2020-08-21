@@ -4,6 +4,11 @@ import styles from './App.module.css';
 
 import { fetchData } from './api';
 
+const handleCountryChange = async (country, setData) => {
+	const data = await fetchData(country);
+	setData(data);
+};
+
 function App() {
 	const [data, setData] = useState();
 
@@ -20,10 +25,10 @@ function App() {
 			{
 				data ? <Cards data = { data } /> : <h1>Тут бует лоадер</h1>
 			}
+
+			<CountryPicker setData = {setData} handleCountryChange = {handleCountryChange} />
 		
-			{/* <Chart/> */}
-			
-			{/* <CountryPicker/> */}
+			<Chart/>			
 		</div>
 	);
 }
