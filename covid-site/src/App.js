@@ -17,11 +17,13 @@ function App() {
 
 	return ( 
 		<div className = {styles.container}>
-			<Cards data = {data} />
+			{
+				data ? <Cards data = { data } /> : <h1>Тут бует лоадер</h1>
+			}
 		
-			<Chart/>
+			{/* <Chart/> */}
 			
-			<CountryPicker/>
+			{/* <CountryPicker/> */}
 		</div>
 	);
 }
