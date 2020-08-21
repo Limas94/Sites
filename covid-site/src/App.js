@@ -11,7 +11,7 @@ function App() {
 		async function dataFetch() {
 			setData(await fetchData());
 		};
-
+		
 		dataFetch();
 	}, []);
 	
