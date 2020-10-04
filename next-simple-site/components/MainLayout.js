@@ -5,7 +5,6 @@ import Link from "next/link";
 export function MainLayout ({ children, title = 'Next App' }) {
 	return <>
 		<Head>
-			{/* title по умолчанию */}
 			<title>{title}</title>
 		</Head>
 
@@ -23,7 +22,7 @@ export function MainLayout ({ children, title = 'Next App' }) {
 			nav {
 				position: fixed;
 				display: flex;
-				justify-content: space-around ;
+				justify-content: space-around;
 				align-items: center;
 
 				height: 60px;

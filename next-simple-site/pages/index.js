@@ -6,9 +6,9 @@ import { MainLayout } from '../components/MainLayout';
 export default function Index() {
 	return <MainLayout title = "Home">
 		<Head>
-			<meta name = "keywords" content = "next, js" />
+			<meta name = "keywords" content = "next, js"/>
 			<meta name = "description" content = "Некоторое описание сайта"/>
-			<meta http-equiv = "Content-Type" content = "text/html;charset=UTF-8"/>
+			<meta charSet = "utf-8"/>
 		</Head>
 
 		<h1>Hello Next</h1>
