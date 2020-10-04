@@ -5,11 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+	"start": "next start",
+	"serve": "concurrently \"yarn dev\" \"yarn mock\"",
+    "mock": "json-server --w db.json -p 4200 -d 450"
   },
   "dependencies": {
+    "concurrently": "^5.3.0",
+    "json-server": "^0.16.2",
     "next": "9.5.3",
-    "react": "16.13.1",
+    "react": "16.13.1", 
     "react-dom": "16.13.1",
     "sass": "^1.26.11"
   }
