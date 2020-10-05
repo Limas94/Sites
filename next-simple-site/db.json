@@ -5,5 +5,9 @@
 		{ "id": 2, "title": "Script", "body": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam laborum explicabo necessitatibus incidunt delectus iusto dolores deleniti veniam nihil dolorum sit, fuga ex adipisci praesentium obcaecati dolore saepe repudiandae. Deleniti." },
 		
 		{ "id": 3, "title": "Java", "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, obcaecati ratione. Porro aliquam voluptas voluptatum fuga magni quisquam, sed, deserunt rem explicabo ducimus esse vero atque perferendis nemo iusto illum?" }
-	]
+	],
+
+	"about": {
+		"title": "Страница про нас"
+	}
 }

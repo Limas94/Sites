@@ -1,21 +1,28 @@
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { MainLayout } from '../components/MainLayout';
 
-export default function Posts({ posts }) {
-	// const [posts, setPosts] = useState([]);
+export default function Posts({ posts: serverPosts }) {
+	const [posts, setPosts] = useState(serverPosts);
 
-	// useEffect(() => {
-	// 	async function load() {
-	// 		const response = await fetch('http://localhost:4200/posts');
+	useEffect(() => {
+		async function load() {
+			const response = await fetch('http://localhost:4200/posts/');
+			const posts = await response.json();
 			
-	// 		const json = await response.json();
-			
-	// 		setPosts(json);
-	// 	};
+			setPosts(posts);
+		};
 
-	// 	load();
-	// }, [setPosts]);
+		if (!serverPosts) {
+			load();
+		}
+	}, []);
+
+	if (!posts) {
+		return <MainLayout>
+			<p>Loading...</p>
+		</MainLayout>
+	}
 
 	return <MainLayout title = "Posts">
 		<h1>Posts Page</h1>
@@ -24,7 +31,7 @@ export default function Posts({ posts }) {
 			{posts.map(post => (
 				<li key = {post.id}>
 					{/* Что бы убрать перезагрузку надо явно указать, куда переходим */}
-					<Link href = {`/post/[id]`} as = {`/post/${post.title}`}>
+					<Link href = {`/post/[id]`} as = {`/post/${post.id}`}>
 						<a>{post.title}</a>
 					</Link>
 				</li>
@@ -34,7 +41,11 @@ export default function Posts({ posts }) {
 };
 
 // Для генерации статики на сервере
-Posts.getInitialProps = async (ctx) => {
+Posts.getInitialProps = async ({ req }) => {
+	if (!req) {
+		return { posts: null }
+	}
+
 	const response = await fetch('http://localhost:4200/posts');
 	const posts = await response.json();
 	
